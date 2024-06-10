@@ -59,7 +59,9 @@ export class CartService {
   }
 
   private getCartFromLocalStorage(): Cart {
-    const cartJson = localStorage.getItem('Cart');
-    return cartJson ? JSON.parse(cartJson) : new Cart();
+    if (typeof localStorage !== 'undefined') {
+      const cartJson = localStorage.getItem('Cart');
+      return cartJson ? JSON.parse(cartJson) : new Cart();
+    }else return new Cart();
   }
 }
